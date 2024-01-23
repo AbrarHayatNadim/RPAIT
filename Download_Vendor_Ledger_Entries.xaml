@@ -1,0 +1,748 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Download_Ledger_Entries" this:Download_Ledger_Entries.in_DownloadFolderPath="D:\Downloads" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_PostingDate" Type="InArgument(x:String)" />
+    <x:Property Name="in_DueDate" Type="InArgument(x:String)" />
+    <x:Property Name="in_Path" Type="InArgument(x:String)" />
+    <x:Property Name="in_DownloadFolderPath" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1608,7851</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Download_Ledger_Entries_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="38">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="45">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Download_Ledger_Entries" sap:VirtualizedContainerService.HintSize="1465,7786" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Boolean" Name="bool_VLE_Exists" />
+      <Variable x:TypeArguments="x:String" Name="myVar" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_isSearchBarExists" />
+      <Variable x:TypeArguments="sd:DataTable" Name="out_VLE_DT" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="SingleWindow" DisplayName="Use Browser Edge: Accounts Payable Coordinator - Dynamics 365 Business Central" sap:VirtualizedContainerService.HintSize="1423,7694" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="01365049-5605-4994-bc1d-5a4d1410d576" Version="V2" WindowResize="Maximize">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1389,7478" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NClick ClickType="Single" DisplayName="Click 'Dynamics 365'" sap:VirtualizedContainerService.HintSize="1347,156" sap2010:WorkflowViewState.IdRef="NClick_16" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Version="V1">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://uat.tfpmy.com/GK/" DesignTimeRectangle="1111, 79, 50, 50" FriendlyName="'A #'" FullSelectorArgument="&lt;webctrl tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='A' type='' class='ms-list-itemLink icon-iSearch' aaname='Tell me what you want to do. Quickly access actions, pages, reports, documentation, and apps and consulting services.' /&gt;" Guid="84c54d73-8b93-4a33-9416-a11853352e83" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAYAAACMRWrdAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFNSURBVGhD7dY/isJAFMfxHCcHmSPYayWksFJSWFt7BLtpJE1IZxOscgOFEAuxHLBIk/K3mWwQd3f2D+w85A1P+BRmpsiXhHmJuq5DiKKyLBGiKI5jhEjCuJEwbiSMGwnjRsK4kTBuJIwbCeNGwrghD1PTBVbparCYKuceCnRhyQ7VtYW5VDjkBYr8gOpi0F4r7BLHfs9owpIMzb1Bsfz6hNRS42QaZMRxBGEzZPUNx7VrbbQ+4lZnmLnWPPEflvY3fdZQrrUHBX3u41PXmh/+w/YNmvz3Q0Ll/b69e80HCfuzYF/FYA8Pyx735gT93XHftqg2H6/7RhNmDQPawNRPA7ru/9sBvXmfc5SzjC5sNHxSbTX09tMn1TjEqeLIw35EGPfaMGsyx3ziuP5Prw8jImHcSBg3EsaNhHEjYdxIGDcSxo2EcRMh0F+gYcAb3/QBvM+MXFQAAAAASUVORK5CYII=" InformativeScreenshot="5ea92b0e4d9d0652e96d031f5abd1f86.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Accounting Manager - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="23, 80, 224, 48" ElementType="Text" FriendlyName="'Dynamics 365'" FullSelectorArgument="&lt;webctrl tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='SPAN' type='' class='productname' aaname='Dynamics 365 Business Central' check:innerText='Dynamics 365 Business Central' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1347,51" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,246" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Image of Search Icon" sap:VirtualizedContainerService.HintSize="334,154" sap2010:WorkflowViewState.IdRef="ClickImage_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                    <ui:ClickImage.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:ClickImage.CursorPosition>
+                    <ui:ClickImage.Image>
+                      <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAB4AAAAZCAYAAAAmNZ4aAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEuSURBVEhL7ZOxasMwFEX7Of4Qk93gvSaDt07tZE81WUyWdjLZCsWbOxRv6qQhKEPAhYAKQR2CAx30EbdKMoSQhyKX1l08nEVXcOyr9648z8N/MIh7YxBfJkxRcol2q6F1i3bJUNz69F0LncT+PYPaCJRJcDwPM9RrDfUSn9y9RAdxDvEpkI+ozEexVOAJldG4i58aNM+WSscM8r2gMwJncb5owMZ0dsA08sFxR2bnOIuzuYKY0NkBI14xRGR2jnvVjw3km2WAEg7JUzoj6DBcMaqVRE2tzsj87Vahsj7FKR3EBiPgGw35+oCba/MBYYxsZobqS5k1ayGm7vvcTbzHRzQtUXNT/YKhmqUI9uemkbW7/AdiG+7yXxbvCBDtnoHMjvyB2I1B3BuDuCc8fAO6kJYiIo6YrwAAAABJRU5ErkJggg==" />
+                    </ui:ClickImage.Image>
+                    <ui:ClickImage.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="3279ed0a-44eb-45ab-a0e1-4d9fafc61b1b">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:ClickImage.Target>
+                  </ui:ClickImage>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+            <uix:NCheckState DisplayName="Check the Search box" Exists="[bool_isSearchBarExists]" sap:VirtualizedContainerService.HintSize="1347,300" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Timeout="10" Version="V1">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="250,84" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="250,84" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?bookmark=12%3bGQAAAACHYRp1FQ%3d%3d&amp;page=29&amp;company=TFP%20Retail%20Sdn%20Bhd&amp;dc=0&amp;signInRedirected=1&amp;runinframe=1" DesignTimeRectangle="349, 143, 217, 28" ElementType="Text" FriendlyName="'Tell me'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?bookmark=12%3bGQAAAACHYRp1FQ%3*' tag='IFRAME' /&gt;&lt;webctrl aria-role='heading' id='dialog_headlineElementSecond_2' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?bookmark=12%3bGQAAAACHYRp1FQ%3*' tag='IFRAME' /&gt;&lt;webctrl aria-role='heading' id='dialog_headlineElementSecond_2' tag='DIV' type='' class='native-container-title heading2 thm-head-c0-font-stack-1 thm-head-c0-font-size-1 thm-head-c0-color-1' aaname='Tell me what you want to do' check:innerText='TELL ME WHAT YOU WANT TO DO' /&gt;" Guid="4281d19b-cd08-4a17-93f6-c04ede002adf" ImageBase64="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" InformativeScreenshot="9136ca3c65a4ea03e07d9e5f5231f787.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Accounts Payable Coordinator - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector" Visibility="Interactive" />
+              </uix:NCheckState.Target>
+            </uix:NCheckState>
+            <If Condition="[bool_isSearchBarExists]" sap:VirtualizedContainerService.HintSize="1347,6666" sap2010:WorkflowViewState.IdRef="If_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="1311,6478" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type -VENDOR LEDGER ENTRIES" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="1269,217" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Text="VENDOR LEDGER ENTRIES" Version="V1">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="359, 192, 624, 29" ElementType="InputBox" FriendlyName="'INPUT 159C3Eee'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' type='text' class='cursorinherit stringcontrol-edit thm-cont-u1-font-size thm-cont-u1-font-stack thm-cont-u1-color-2--medflat thm-cont-s1-bdrcolor--focus thm-cont-s1-outlinecolor--focus thm-cont-h1-bdrcolor--hover thm-cont-h1-bdrcolor--prev-sib-hover' aaname='' /&gt;" Guid="889381dc-9330-45e5-bc55-eccced751cce" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAnQAAAAhCAYAAABQtTaiAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF3SURBVHhe7dgxaoJBFIVRW5fhirIGN5PCFC7EwiaQTbgPTf9jIzjhCjMQMIFUmQfnwink+fcfs2pmZmZmVnqCzszMzKz4RtBdb7d2Ol/ay+HY1rt9W72+AQAwkTRaWi3NlnbrG0GXg5ADAJhfmi3t1jeCLrWXP2zfP9rnsrT7/Q4AwETSaGm1NFvarW8EXX+dE3MAAPNKq/VXur4RdDnEsw8BAJhH77a+X4Nus9l8+w0AwP8TdAAAxQk6AIDiBB0AQHGCDgCgOEEHAFCcoAMAKE7QAQAUJ+gAAIoTdAAAxQk6AIDiBB0AQHGCDgCgOEEHAFCcoAMAKE7QAQAUJ+gAAIoTdAAAxQk6AIDi/hR0AADM58egW+/2j8Pnsjz9EACA/5dWS7Ol3fpG0L0cjo/j9v1D1AEATCiNllZLs6Xd+kbQnc6X8UoHAMC80mxpt74RdNfb7XFI7Qk7AID5pNHSamm2tFvfCDozMzMzqzlBZ2ZmZlZ6rX0BZKpNItIuJ20AAAAASUVORK5CYII=" InformativeScreenshot="29ebde6e4351be566d60694cb4888a25.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Accounting Manager - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target DesignTimeRectangle="359, 142, 217, 28" ElementType="Text" FriendlyName="'Tell me'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aria-role='heading' id='dialog_headlineElementSecond_1' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aria-role='heading' id='dialog_headlineElementSecond_1' tag='DIV' type='' class='native-container-title heading2 thm-head-c0-font-stack-1 thm-head-c0-font-size-1 thm-head-c0-color-1' aaname='Tell me what you want to do' check:innerText='TELL ME WHAT YOU WANT TO DO' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1269,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Typing VENDOR LEDGER ENTRIES&quot;]" />
+                  <uix:NKeyboardShortcuts DelayBetweenShortcuts="{x:Null}" ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="1269,178" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_12" Shortcuts="[d(hk)][k(enter)][u(hk)]" Version="V1" />
+                  <uix:NCheckState DisplayName="Check the Vendor Ledger Entries Window" Exists="[bool_VLE_Exists]" sap:VirtualizedContainerService.HintSize="1269,300" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Timeout="30" Version="V1">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="250,84" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="250,84" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="286, 146, 151, 13" ElementType="Text" FriendlyName="'Vendor Ledger Entries'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='Vendor Ledger Entries' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='Vendor Ledger Entries' tag='SPAN' type='' class='content--11EpEhMg6WiqoEO8wTAXfn' check:innerText='VENDOR LEDGER ENTRIES' /&gt;" Guid="151c1eed-f8a8-45f8-ab1e-6c790caf73f3" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAJsAAAARCAYAAADKSt4yAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAUoSURBVGhD7Vj7b1RVEPYPNMboDwYfoBgEJKXQCja0obUgVAopiGLKoxEpjxqLLdpAQwPaEm0bKJZHFTA0YKnU7XPbAn3Ysd+43zr37Nm7u63sT/dLTvbuzDkz38yZ87j3BYkQIU+Iii1C3hAVW4S8IVlsdaebpOrTOpmdm0tIRP549Fje3VwhN3+9J9du9MmLbxaktHOtP8jTZzNSUf2FHD15Vubn/06MFh2zbutOGRuPa8Mzx728apOU7zkkg0OxRG+RZzMz8tXX38lr722Vl1YWSunugwE9fFnfsFFTWy/jE/FEj/9gfbtwubAhBsTi+llZUCYtF9tlbn4+YUGk7+59KSrfqzxXbyqXzqs3ZGFhQXW52g+Lw+3Lhvgy5b3952vesa+vL5He23dSONo4aBv+adP2ZaMe3PcfPimvri7WnGws/SSQEyBZbL2376rzodhIQiLS1t4lm7dXS3xyWp2tKa6UBwODyeJBAykSgyMUJmEnnBOABOAZdlDchWV7ZGRsQkkdbzgna7fsUC5/Dg0reeoBBIYCBEfY+L3/oWwo2aULxQYFWN8uXC5siBN2rB/4vnSlW954f5sWHDAwOKSL8Nipb7VP84XLOoFXe/tUn4t9yMPicPuyYVPIlPfY8Giyf03tCW14Ho9PSmx0LMARcTY0t8rbhdt1k/EVW7r5B5fqQ8elbPdnqo+NjC2O+1GO1DcGFmiy2EAAE3ul67r+hwEUw5dnmvV/2OSR2KrFHaC4Yp9MxKdU7is2yAgEuPaDHSqDfySc/oHR8QlZ/+HH0n39lv5H4PADf8Q3319MkQFhfH1cLHx+ms5fSspa2jqkZOcBmZp+ojrsKgeOnEqeDEuxny4OX18CMujC8k58XtegjfBxHB4d14KCjLbhH/DZJDLFSySLDSsKKwtJQ/KwkmCAKwaG3MrmSiWx02fPS+W+Wl0hkFuCPkJW5tO7AeP3ee1sKHauQt8EW5l9ZnGhYbLBIxv7y9nZpp88VV02eSfSFdtydjZ3/rmzISc+BF4QcHxtLK3SHQU7DI9QAM7c85oJt8SQuDVFH8lv9/oDQTM4yAgr8+ndgPFr/eNusHdx+/4/7mw4Bu8/GFA9/DA2wsrsM/zQBv1lY9/qwuJw+6KxaLLJO5Gu2KzdtzaU5nRnsznC3Rp3cNw/eWf75dadwOIJFBtWHwqsu+em7nA8QoGwybPEYBx3GDju6OxJmQDYIazMp3cDxi8DxErHEdzR1aM6F2F8fb4srB/Cynx66y8X+5ni8PkiIIMOfdLlnUhXbOCIsdjVcDWYnPp3c7G2gbB8WsDWyOJxXN/YktwliUCxoSO28qqDdVKwrSrtZd+FSwzbPILGPYJjbHDEcu5svgRZhPH1cbHwTXDYnQ0403RBjzK8UediP1McPi4EZNCF5Z0IKzbALXrXdlg+ffDlIFBsAI7SV94pChyhAAZlehslMQDbOT5hkCCd844AO0t5G7WJZ4La2jv1v0UYX5cLm+9tEb7dt9H+h4/0Uo63Ubx5wQ705JGN/WzjsFysLdyLssk7kanYWPT4nIO7p2s7LJ/Iwa79R/XrBZ4xd4dPNOqxPvj4Lx0PpBQbdhhMsD1CAThzz2w0kPEFTfIMmsFx3FK/s9lJYoEyQRZhfF0ubLSNPlae6TvbinUlAX029rONw+XChviyyTuRqdgAftJB0bu2w/I5MzsrrZd/0lMI+cDcbqms0RxZpBRbhAjPC1GxRcgbomKLkDdExRYhb4iKLUKeIPIPrMqQnpgeDp8AAAAASUVORK5CYII=" InformativeScreenshot="b39326ff2d64d0f3d9148a1c979cb87d.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector" Visibility="Interactive" />
+                    </uix:NCheckState.Target>
+                  </uix:NCheckState>
+                  <If Condition="[bool_VLE_Exists]" sap:VirtualizedContainerService.HintSize="1269,5438" sap2010:WorkflowViewState.IdRef="If_2">
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="848,5279" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="si:FileInfo" Name="VLE_File_Info" />
+                          <Variable x:TypeArguments="x:String" Name="variable1" />
+                          <Variable x:TypeArguments="x:String" Name="ga_vendorName" />
+                          <Variable x:TypeArguments="ui:UiElement" Name="ue_VendorNo" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NCheckState Exists="{x:Null}" DisplayName="Check the filter bar" sap:VirtualizedContainerService.HintSize="806,557" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Timeout="20" Version="V1">
+                          <uix:NCheckState.IfExists>
+                            <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="376,250" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <uix:NClick ClickType="Single" DisplayName="Click 'Filter list by...'" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_6" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Version="V1">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="117, 306, 91, 16" ElementType="Text" FriendlyName="'Filter list by...'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='id__285' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='id__285' tag='DIV' type='' class='ms-Button-label thm-rela-c3-font-size-3--medflat thm-rela-c3-font-stack-3--medflat thm-rela-c3-color-1--medflat label-62' aaname='Filter list by...' check:innerText='Filter list by...' /&gt;" Guid="fa7411d7-d9b2-4820-9e8c-4fa54f825546" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFYAAAASCAYAAADBnymNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHNSURBVFhH7ZY9LgVRGIbtwR7Ygh3YgRXYB+1NVFdHR0WFQnkLUbABiUSCREcUJNxu5JG8453PmWvMnaNxiidz5vs/7z3OWHh7n1aF4SnCZqIIm4kibCaKsJloCLt+fFotbI4anFxd1z5gjW11/6B6fHmtc4fGe9w9PVfL2zv1LPOwdX5R7yMn34SlsdtSRGFzDNvnx+MHWNndqy7vH5J+KML+F2F9IN80ttTVgY8Y2X0zyl87PGrkON5DtRSnq0G1mQ0xF0fj2qbcWFf74KlYzRb7uK1NlzbmFjb6IA4TB+bJhnwDEe8R831OfJOb28911xNL7zib3nn6XqhFTWrL1oWZHy9OhQp6Q9909EFqGHLa8lP8JKz3E12FjbneK9ZIxXchy4nF7z+QUE7MT+ExwBqb/PTzmtj6Cks815LqSAfesc+q10YWYeOgkSGEFfRW3BAn1t+5YmbtYxZ/csdGYn4Kj1E9bKw3Jmd1rsd1FZaPnGLIif8jUwtBl8ZNO2tdj+Tj5+lrxQ4irIbjT1ODuE3IF/NTeAxIWHzMoZr+HQDmxN5WHz+i4VeN1J6xxdr07yVs4Qs/SH0owiZIncDfUoQ1dOVwPeja6ce0+gAA80VXM+BdbQAAAABJRU5ErkJggg==" InformativeScreenshot="cb2b488fb76b0bd9e9dbc8d708ac1fea.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="116, 251, 218, 32" ElementType="Text" FriendlyName="'Filters'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='Filters' tag='SPAN' /&gt;" FuzzyAccuracy="0.77" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='Filters' tag='SPAN' type='' class='aside-left-control-caption--1U6fzM3KBD_4ZXvYlapeh2 thm-rela-c3-font-size--medflat thm-rela-c3-font-stack--medflat thm-rela-c3-color--medflat' check:innerText='Filters' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAMgAAAAhCAYAAACcE+TUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFySURBVHhe7dchTwMxGIdxPiBfgAQPBjeBQaGQCBSWTIEDh8dgUCQIQkLCQhAQBMyVvJe8y7te+2eQowvLI35Z1vbaiXtyt7WPz2kCUEYggEAggEAggEAggEAggEAggEAggEAggEAggEAggEAggDAL5PXtPe0dHKX1zZ05NmZzZ+eX3ffD43G3/vbuPm1s76at0X6aPL/MbQqsikED8TX26fsC/1kxkKvrm97CXCkQi4dAsEoWDkQ9QR4en3pPn9KTxfn+Nm/rbJ+T04tuzuPy2BzRYRm+fcXyG/O3geQ3urHr7HoPJM7ZOX5WPu6/FWhlkEBqr1jxCWHr4z72GQPxa+KauDewDIO8YtUC8TU2louBxIBMDMct8r8IGFqTQPIAXC2QyPeM5wCt/Ekg8YaOY87OsfNqgfhZpWt8DdDCoIH4mK2rhWN+GkjcC2hpFgiAPgIBBAIBBAIBBAIBBAIBBAIBBAIBBAIBBAIBBAIBqqbpC55TFNWzCaXRAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NClick.Target>
+                              </uix:NClick>
+                            </Sequence>
+                          </uix:NCheckState.IfExists>
+                          <uix:NCheckState.IfNotExists>
+                            <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="376,341" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <uix:NClick ClickType="Single" DisplayName="Click 'I'" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_17" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Version="V1">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://uat.tfpmy.com/GK/?runinframe=1" DesignTimeRectangle="1102, 203, 16, 16" FriendlyName="''" FullSelectorArgument="&lt;webctrl src='https://uat.tfpmy.com/GK/?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='' aria-role='presentation' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://uat.tfpmy.com/GK/?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='' aria-role='presentation' tag='I' type='' class='css-52 root-43 ms-Button-icon thm-head-a1-color--medflat icon-38' check:innerText='' /&gt;" Guid="fa932517-149b-4b05-8b1e-25780efaa098" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC2SURBVDhPY/j2/cd/auIhYuCDN+/+q0+e9Z+hoZMsDNILMgNu4KO37/9bz1nyf8fNOxg2EsIgPSC9IDNAfLiXD997+F9v2rz/u27dRdGAD4PUgvSA9MLEUMKQFEOxGQbCGJFCjKG4DANhDANBGJ+h+AwDYawGgjA2QwkZBsI4DQThQ0CNsBiEpQSQGDa1MIzXQFDacl+8Ekwjs7GpheFRA1ExTQxELjSQCwFcGK+B5ODBbuCP/wAKCL/MpO49cQAAAABJRU5ErkJggg==" InformativeScreenshot="551266de80d70f0eb0248bdcd4f199ac.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="1131, 203, 16, 16" FriendlyName="'I'" FullSelectorArgument="&lt;webctrl src='https://uat.tfpmy.com/GK/?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aria-role='presentation' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;a&amp;gt;div&amp;gt;div&amp;gt;i' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://uat.tfpmy.com/GK/?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aria-role='presentation' type='' tag='I' class='root-43 ms-Button-icon icon-NotBrickView thm-head-a1-color--medflat icon-50' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABCSURBVDhPY/j2/cd/auJRAynHtDPwwZt3/9UnzwLjU4+egGmGhk6CGKQOpBfDQGrhUS9Tjke9PKK8TC1MZQN//AcAye+14JkPmuMAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NClick.Target>
+                              </uix:NClick>
+                              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                                <ui:CommentOut.Body>
+                                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,246" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Filter icon" sap:VirtualizedContainerService.HintSize="334,154" sap2010:WorkflowViewState.IdRef="ClickImage_4" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                      <ui:ClickImage.CursorPosition>
+                                        <ui:CursorPosition Position="Center">
+                                          <ui:CursorPosition.OffsetX>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetX>
+                                          <ui:CursorPosition.OffsetY>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetY>
+                                        </ui:CursorPosition>
+                                      </ui:ClickImage.CursorPosition>
+                                      <ui:ClickImage.Image>
+                                        <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAABcAAAAWCAYAAAArdgcFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACuSURBVEhL7ZTBCoJAEIZ9zCAIfJPoIPQmGVLUVYR6juiUGT7FyHcwgmbG3aAw8PCx7jr/N7AOJvWjlW8xyVV+L1+VJ0mW648hj0eVZ9VZZpudXG73t3ce1JMjz16VX+tG0uIo83wf3IA66smR58y885gGmhjcDxrSwBKDKwevgSeGQTloDYbEECQHBIvt4TkJrOwtMQTLgfntZ/j12WKSq4xLrv2gLKLksfyrvJUOoi4FRBvJje4AAAAASUVORK5CYII=" />
+                                      </ui:ClickImage.Image>
+                                      <ui:ClickImage.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="9f29b7e2-2ad9-4823-8f67-35d7825033db">
+                                          <ui:Target.TimeoutMS>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:Target.TimeoutMS>
+                                          <ui:Target.WaitForReady>
+                                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                                          </ui:Target.WaitForReady>
+                                        </ui:Target>
+                                      </ui:ClickImage.Target>
+                                    </ui:ClickImage>
+                                  </Sequence>
+                                </ui:CommentOut.Body>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:CommentOut>
+                            </Sequence>
+                          </uix:NCheckState.IfNotExists>
+                          <uix:NCheckState.Target>
+                            <uix:TargetAnchorable BrowserURL="https://uat.tfpmy.com/GK/?runinframe=1" DesignTimeRectangle="117, 306, 91, 16" ElementType="Text" FriendlyName="'Filter list by...'" FullSelectorArgument="&lt;webctrl src='https://uat.tfpmy.com/GK/?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='id__187' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://uat.tfpmy.com/GK/?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='id__187' tag='DIV' type='' class='ms-Button-label thm-rela-c3-font-size-3--medflat thm-rela-c3-font-stack-3--medflat thm-rela-c3-color-1--medflat label-64' aaname='Filter list by...' check:innerText='Filter list by...' /&gt;" Guid="9a2938d7-74e9-428a-aa40-afd16209f461" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAF8AAAAUCAYAAADr0+FaAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIbSURBVFhH7ZY9TsNAEIVzB+4AV+AG3IATcA9oI1GFitBBBRVQUFIgCqBIiURHJDogBUiQzuiL9KLJeL3+wcYFW3yyd3c8++bteu3B1/c8S/RDMr9Hkvk9kszvkcrmv358Zlsnp9nOxdVKe//2LhfbBZePT9nGwTh7fpst22vDUXY/fcnFNuGv64EV85l4sDdcQQUm89snZz4CEGL7Q3ixXYv35tehSl3J/Aj/2vyY2bz6HAH2uLJFcG/HMFJjMvXwYbIYK5rfm+/bXgN5pu+zxVV9sfy2HqvXzsGRq2M39Jztr0Ir5ofawueUSVoArhTpi/LEzAfulZO5dq9vlnPG6hLSjxZbA7o0j9cA1LM+Gjf69pR+cCVa4iSsrA2I3Dw6zgmzO4iCqnw4Y+aXGYAm1REaB+n3m4D8WljFcK9xcpdtnCI63fmY4Y8jYc33uylEzHza5LN5LbG6REh/qJ+r5tCYXYw6dG4+Oz9mbFvmgzT4RYjVJUL6Q/22Ju63z86jeWN0aj4CMSi2M9o0vyg2VpcI6QcM9kcaC8scxPr4OrRmPiDKv/a0vUn82aiYNswnFzmrxCrGo3p4a4i3fd4TxtnxYBeFe/szQe161o9Bq+ZrAgrwi0KfsAtUxRjwcbZt5wWfT1oZK6uPvyTFFsWTmzn8RvuV+YlqyHxrZBOS+Q3wb2FTkvk10fFkj9WmJPNrgOF8B/xZ34x59gN9PELoLaeISQAAAABJRU5ErkJggg==" InformativeScreenshot="5bb53117721e48643b49b080a890644b.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target DesignTimeRectangle="116, 251, 218, 32" ElementType="Text" FriendlyName="'Filters'" FullSelectorArgument="&lt;webctrl src='https://uat.tfpmy.com/GK/?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='Filters' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://uat.tfpmy.com/GK/?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='Filters' tag='SPAN' type='' class='aside-left-control-caption--1U6fzM3KBD_4ZXvYlapeh2 thm-rela-c3-font-size--medflat thm-rela-c3-font-stack--medflat thm-rela-c3-color--medflat' check:innerText='Filters' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAN4AAAAkCAYAAADmboTIAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGlSURBVHhe7ditTgQxFIZhLpAbIMGDwSEwKBQSgcISFDhweAwGRYLA8ptAELCu5BtykrOlZWc3S0+avOIJbKftqJd2Wfn8miQAbREeEIDwgACEBwQgPCAA4QEBCA8IQHhAAMIDAhAeEIDwgACEBwSYK7yz88u0ur6VdvcP09v7R7q9u09rmzvD2NX1TXENgN+mwjs4Ohkiyim0x+fX4ac+b2zvpYenF8IDFjQ6PJ1wY088m6f9/P4AfhTDs7D8s5JSeFpnJyPhAWVzhZc/z8Pznz2dgFqv66muqTauuVpT2v/49GL43eK1U7S2FuhJs/Bqz3xAtr+nsTw6ITz0bNR3PDuxZoWnORrXc41pfr63j9rG8v39frW1QM+ahOfHSmye7W//NdWYaG8/n9MOvVvqVVNzSuHl3+1ytt9f7/fvMvYHAehNk/D8WG1vmfV+Ke0P9Gbp4fl5RidTfl00/lpZe3++n/HvBHryL+HlV0u7Epaui4uGR3To2VR4ANogPCAA4QEBCA8IQHhAAMIDAhAeEIDwgACEBwQgPCAA4QEBCA9obpK+Af+Q29zurnBrAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NCheckState.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NCheckState>
+                        <uix:NClick ClickType="Single" DisplayName="Click to Add filter" sap:VirtualizedContainerService.HintSize="806,156" sap2010:WorkflowViewState.IdRef="NClick_8" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Version="V1">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable Accuracy="0.92" BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="245, 333, 82, 40" ElementType="Button" FriendlyName="'Filter...'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='Filter...' tag='BUTTON' type='button' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='Filter...' tag='BUTTON' type='button' class='ms-Button ms-Button--action ms-Button--command thm-rela-c3-font-size-8--medflat thm-rela-c3-font-stack-8--medflat thm-cont-s1-outlinecolor--focus thm-cont-s1-bdrcolor--focus thm-rela-c3-color-8--medflat root-47' check:innerText='&amp;#xD;&amp;#xA;Filter...' /&gt;" Guid="edce8b05-921a-4978-985c-d36ae1b10e6e" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAE4AAAAoCAYAAABQB8xaAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGMSURBVGhD7ZQxSgNBFIb3Nl5BvIA38ATeQytBtLMzVsZGsVALSwsR0SpFYMHKJFgoioWCphv9F16YTGZj9k9Ydte/+GDmvXlvZz9mJvn6HjpRHIkjGYlLtnbEDETF2VjEkTgSiSOROBKJI5E4EokjkTgSiSOROJKFirvvP7m1kzP3+vEZzTcJiSOphbje27tb2tt3F+lDNl5uHWbfiq0ti0qJQ91q+9glm9sjMPf7heIgM1xTBpUTh/ppp0niIuSJ82X5492bu7HTCYlY78fXzy/HemxcXWdxrPG/URRK3G1v4E676QTYzMpB2x11utH84+/mY/2MouKQC09cOIc47At1eCdN5LxUThx+2k6LnZhZxVm9nTzLhz0sNw+UuDywqTKvKnIxcb54gFj6/CJx08TF6sMeYY6hUeIwx3Phz2M9MEce61CPGHJYE/bLo/biTACuJH4aMbxp/lVFvNHi6oTEkSxU3H9C4kgkjkTiSCSOROJIJI5E4kgkjkTiSHLFib+ZECeKIXEUQ/cDFasmJg06RcsAAAAASUVORK5CYII=" InformativeScreenshot="137800d8b10dc6e4f0643d93d0c14138.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target DesignTimeRectangle="245, 305, 250, 18" FriendlyName="'Filter list by'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='5' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl type='' class='caption-panel--3LYYOfMfK6H8kom6N6aKPV' tag='DIV' aaname='' check:innerText='Filter list by:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAOUAAAAUCAYAAAByB/qqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIVSURBVHhe7Zk9S1xBFIbzA/0DAWtNk0oLmxBICklhoWAlWEkq0yVd+jSBIAQiFrYiFoqF2l15hPd69ji7WXVmmeItHu6953NGzrt3dn1zc3s3GGP6waI0pjMsSmM6w6I0pjMsSmM6w6I0pjOeiHJ77+uwtPx+gl+/j0YfcI/tw5fd4fLqeiK/JrHH2fnFsLr+eVzLa/j2/ee4D2N6oyhKhjbbM1mULQb9JcJHvGsft4Z/J6dFP1iUpmcsSmM641mijMMcBYOtdNzFR4zsUQjK39zZn8iJxB6qpTgdZ1WbtSHEt+82Rptyc13tg6titbbcJ9qIx05f+stvTE2qiDL7IA5yfNawc0UMcfgzsUfOj+vE9+fv8cP9vG9Keue16Zlr3Au1qElt+luUpiX//aEnDmAc1iiY7IM4yLKRMy2/RIyRcLDho07sJ+YVZc6NvXKNUrwxrWj2psQfxS2Uk/NLxBjgHpv89Is1sb1UlMRzlFYd/R14xj6rnjE1aSbKPOSZGqIU9FZcjTdlfOZYPGsfxtRmYd8pMzm/RIxRPWzcHxz+GHNj3Lyi5AchxZCT/wdKLcS4sv5pws69v1OallQTpQab46SGONqEfDm/RIwBiRIf61DNLBLWiX1affwIDr9qlPaMLdemv0VpWvJElOaR+CFkzKKwKKfA0Zaj66xjsDEtsCgTOiZzpNVR2ZhFYlEa0xV3wz1aGmi7/3v1agAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NClick>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Add Vendor no to filer " EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="806,217" sap2010:WorkflowViewState.IdRef="NTypeInto_6" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Text="Vendor No.[k(enter)]" Version="V1">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="286, 344, 225, 29" ElementType="InputBox" FriendlyName="''" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='ComboBox1354wrapper' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='ComboBox1354wrapper' tag='DIV' type='' class='ms-ComboBox is-open css-78' aaname='' /&gt;" Guid="09553445-18dd-4429-8041-dbe8af0eab64" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAOUAAAAhCAYAAAAmsGy0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJuSURBVHhe7ZtNa1pBFEDn17ZIoYuWfmUluAm4yV9pKV10464USmmiIrVJ1OC3NWl8RhMDeut9RYnJjRMbpw14DpzVzFseHjPMdcPzC0HEhyNRIj4w51G6rTwi/kfNKAHgD51O559KlAAerHBCSpQAHqxwQkqUAB6scEJKlAAerHBCSpQAHqxwQkqUAB6scEJKlAAerHBCSpQAHqxwQkqUAB6scK5bLBbl8PDQXLtqNpuVarVqrs0kSgAPVjjXzeVykkqlZH9/31xXM5mM7OzsSK1WM9dnEiWAByscy2Vh3jVIlSgBPFjh3KYV5ipBqkQJ4MEKZ5m7u7uSTCbjMDXIdDrtPUdelSgBPFjh+NQwE4mEbG9vrxSkSpQAHqxw7uLBwcHKQapECeDBCiekRAngwQonpEQJ4MEKJ6RECeDBCiekRAngwQonpEQJ4MEKJ6RLo5xMJogbb7vdXptWhNddiHIwPBfVbeVkPB4j4tRWq7VWfZEuRHk2GEr/bCDu9Z5cXl7GjkYjxI1W36yuw3q9HttoNKTZbM4DXRqlBnnai8S9/CqDwUD6/b5EURTb6/UQN1Kdk7yPpVIptlwuy9HRUfzKRyO9LcyFKDXIn91jcc8/S7fbjTfrh1r2rHLETVMHk++jTo7k83kpFArxMLQ+v6tUKreGuRClBtmYbnJPM+KefBSX+CDu8Xtxj95NfYuIf+W0H+1Ie9KutK9nn8S9+CLu1Tdxb7LxPY7GOHMeZavVllK5svArRcT1q51pbye/TiXqn8UXrLMQr+pq9YZ8L/6IPwKAm1hnzlXVvrQz7a17fCK9qC96yXozygv5DZ33a0UqIaZ7AAAAAElFTkSuQmCC" InformativeScreenshot="88965036518fdbbb756b8d0e3561e2c0.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target DesignTimeRectangle="316, 320, 36, 13" ElementType="Text" FriendlyName="'Filter...'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='id__3385' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='id__3385' tag='DIV' type='' class='ms-Button-label label-39' aaname='Filter...' check:innerText='Filter...' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACgAAAARCAYAAACvi+4IAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADzSURBVEhLY/j2/cf/wYxHHUgpJujAB2/e/VefPOv/pms3wWyL2Yv+n3z4BKtaWmC4A19/+vzfffHK/wwNnXAM4oPEYWrQHQhyNLoaamMUB4at2oA3dAalA5EdhczuOXICJbRBjgWpRxZP2bgNxYz6fYfA4iA1yHbgw2Q7ECSHHoLofJADQY4B6QOlY5iDScF40yDIQGIdCNMPC0mYPLoZMDliMdVCEJsHQRgkdu3Fy8HhQFyZbFCEIIgPSm/IfGxmgPggeZA6kH6QGEgOpAbdPBCmyIEwi0BRCTIcJAZKc8hRDBKnigMHKx51IKV4kDvwx38ACKS/WGCmr2MAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Vendor No.'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="806,217" sap2010:WorkflowViewState.IdRef="NTypeInto_7" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Text="T*" Version="V1">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="286, 330, 225, 26" ElementType="InputBox" FriendlyName="'INPUT 451DD3ee'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' type='text' class='cursorinherit stringcontrol-edit thm-cont-u1-font-size thm-cont-u1-font-stack thm-cont-u1-color-2--medflat thm-cont-s1-bdrcolor--focus thm-cont-s1-outlinecolor--focus thm-cont-h1-bdrcolor--hover thm-cont-h1-bdrcolor--prev-sib-hover' aaname='' /&gt;" Guid="719d1354-ab99-4828-a01e-c91055509db1" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAOUAAAAeCAYAAADTnNnMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFkSURBVHhe7d0xTsNAEEbhtBwjJ+IMXIYCCtz7CFjCRSQuQe0rAL0VHJt40F9shB07GMm7meKN9BXxbsond+PN/qsxAH6comwOB/s+Ho1hmLSj7tTfWZT7rrO39w+7fX6xm4cn29w/AohInak3daf+QpinKHVAjEB66k796Y05iFLF6sLd7tU+69r6vgcQkTpTb+pO/WkGUYa3JEEC6ai38LY8i1IH8vsP2+128BvA+kJ7RAk4QZSAM0QJOEOUgDNECays67rJ52Nz94gSWFHbtpbnuVVVNXke6Fz3dH98RpTAyuq6tizLZsPUc53r3tQ5UQIRzIX5V5BClEAk4zCXBClECUQUwizLclGQQpRAZAqxKIpFQQpRAs4QJeAMUQLOECXgDFECzvwrSgDxzUbJOhAgvYvrQFicBaSlzi4uzmLFJHAd6m5yxSTLmIG01Jl6U3eTy5j5bAHDXGfmP1sAwIHGfgBvk+6qw2MBdwAAAABJRU5ErkJggg==" InformativeScreenshot="b25e3f921d9581241a0aee53e382a6ad.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target DesignTimeRectangle="300, 308, 54, 15" ElementType="Text" FriendlyName="'Vendor No.'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='451DD2' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='451DD2' tag='SPAN' type='' class='thm-rela-c3-font-size-4--medflat thm-rela-c3-font-stack-4--medflat thm-rela-c3-color-4--medflat' aaname='Vendor No.' check:innerText='Vendor No.' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADoAAAATCAYAAADBGB7WAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGqSURBVFhH7ZQ7SwRBEIT9gf4BwVhNDMQLTFTQQAQNFIwOjNRsMzESjMRAEyPBQATBNygGetnIN1BD7dytsj6SvQ2KmelHdVdvsyPvH70wDGiFNg2t0KZh+IReXF6Flc3t8PL6lpzcseGTrS7uHp7CRnevxFsH1J7oLJV6gAtOuD32KyShg0Rx7+4U6f0T/IVQ8v0j/EooKPYPI/x9cnYeiedXt8Lo+HSY7CzHAirGILCPTc2lIXHyxk6ehDoPUC2JwQeIUw8aNn7Fq7aEYhdnni+UhEKqyUFCEieFXARvNa3iDESCsPOWXcW9WXhnF9cjH8jXU1A9jxcXNucn3ms4SkIJ1vqqccj4ipqYpnb/+Jz85HLuFgcx19cMO3HXN7cxT/GAhqgjMbI73KeeXCgn9kHxjpJQQHEgAsjyBoEX483530IBXEfHp6m2+qyKF/qEEjizsBbXBCIapsF8HaqEcmrFsNME+YoXj8dVNQdyn/I0NOfHrxrYuSuvT6iEeRCEvr4QVQnlThFfc+KIz3n0JeoIBeTpp8gbfnGq72+FNhWt0KahFdos9MInD739X0CJNycAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NTypeInto>
+                        <uix:NKeyboardShortcuts DelayBetweenShortcuts="{x:Null}" ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="806,178" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" Shortcuts="[d(hk)][k(enter)][u(hk)]" Version="V1">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NKeyboardShortcuts>
+                        <uix:NCheckState Exists="{x:Null}" DelayBefore="3" DisplayName="Check App State 'IMG'" sap:VirtualizedContainerService.HintSize="806,1734" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Timeout="300" Version="V1">
+                          <uix:NCheckState.IfExists>
+                            <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="376,1518" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="ui:UiElement" Name="UIE_RemainingAmount" />
+                              </Sequence.Variables>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <uix:NClick ClickType="Single" DisplayName="Click to Add filter" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_9" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Version="V1">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable Accuracy="0.92" BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="245, 333, 82, 40" ElementType="Button" FriendlyName="'Filter...'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='Filter...' tag='BUTTON' type='button' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='Filter...' tag='BUTTON' type='button' class='ms-Button ms-Button--action ms-Button--command thm-rela-c3-font-size-8--medflat thm-rela-c3-font-stack-8--medflat thm-cont-s1-outlinecolor--focus thm-cont-s1-bdrcolor--focus thm-rela-c3-color-8--medflat root-47' check:innerText='&amp;#xD;&amp;#xA;Filter...' /&gt;" Guid="edce8b05-921a-4978-985c-d36ae1b10e6e" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAE4AAAAoCAYAAABQB8xaAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGMSURBVGhD7ZQxSgNBFIb3Nl5BvIA38ATeQytBtLMzVsZGsVALSwsR0SpFYMHKJFgoioWCphv9F16YTGZj9k9Ydte/+GDmvXlvZz9mJvn6HjpRHIkjGYlLtnbEDETF2VjEkTgSiSOROBKJI5E4EokjkTgSiSOROJKFirvvP7m1kzP3+vEZzTcJiSOphbje27tb2tt3F+lDNl5uHWbfiq0ti0qJQ91q+9glm9sjMPf7heIgM1xTBpUTh/ppp0niIuSJ82X5492bu7HTCYlY78fXzy/HemxcXWdxrPG/URRK3G1v4E676QTYzMpB2x11utH84+/mY/2MouKQC09cOIc47At1eCdN5LxUThx+2k6LnZhZxVm9nTzLhz0sNw+UuDywqTKvKnIxcb54gFj6/CJx08TF6sMeYY6hUeIwx3Phz2M9MEce61CPGHJYE/bLo/biTACuJH4aMbxp/lVFvNHi6oTEkSxU3H9C4kgkjkTiSCSOROJIJI5E4kgkjkTiSHLFib+ZECeKIXEUQ/cDFasmJg06RcsAAAAASUVORK5CYII=" InformativeScreenshot="137800d8b10dc6e4f0643d93d0c14138.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="245, 305, 250, 18" FriendlyName="'Filter list by'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='5' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl type='' class='caption-panel--3LYYOfMfK6H8kom6N6aKPV' tag='DIV' aaname='' check:innerText='Filter list by:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAOUAAAAUCAYAAAByB/qqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIVSURBVHhe7Zk9S1xBFIbzA/0DAWtNk0oLmxBICklhoWAlWEkq0yVd+jSBIAQiFrYiFoqF2l15hPd69ji7WXVmmeItHu6953NGzrt3dn1zc3s3GGP6waI0pjMsSmM6w6I0pjMsSmM6w6I0pjOeiHJ77+uwtPx+gl+/j0YfcI/tw5fd4fLqeiK/JrHH2fnFsLr+eVzLa/j2/ee4D2N6oyhKhjbbM1mULQb9JcJHvGsft4Z/J6dFP1iUpmcsSmM641mijMMcBYOtdNzFR4zsUQjK39zZn8iJxB6qpTgdZ1WbtSHEt+82Rptyc13tg6titbbcJ9qIx05f+stvTE2qiDL7IA5yfNawc0UMcfgzsUfOj+vE9+fv8cP9vG9Keue16Zlr3Au1qElt+luUpiX//aEnDmAc1iiY7IM4yLKRMy2/RIyRcLDho07sJ+YVZc6NvXKNUrwxrWj2psQfxS2Uk/NLxBjgHpv89Is1sb1UlMRzlFYd/R14xj6rnjE1aSbKPOSZGqIU9FZcjTdlfOZYPGsfxtRmYd8pMzm/RIxRPWzcHxz+GHNj3Lyi5AchxZCT/wdKLcS4sv5pws69v1OallQTpQab46SGONqEfDm/RIwBiRIf61DNLBLWiX1affwIDr9qlPaMLdemv0VpWvJElOaR+CFkzKKwKKfA0Zaj66xjsDEtsCgTOiZzpNVR2ZhFYlEa0xV3wz1aGmi7/3v1agAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NClick.Target>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NClick>
+                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Add Remaining Amount to filer " EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="334,217" sap2010:WorkflowViewState.IdRef="NTypeInto_8" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Text="Remaining Amount" Version="V1">
+                                <uix:NTypeInto.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="258, 436, 204, 30" ElementType="InputBox" FriendlyName="'INPUT ComboBox846-input'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='ComboBox846-input' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='ComboBox846-input' tag='INPUT' type='text' class='ms-ComboBox-Input css-69' aaname='Add a new filter on a field' /&gt;" Guid="cc5d92d2-9cf8-4d66-9307-c6ebc60d56dc" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAANAAAAAiCAYAAAAu/ldmAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC7SURBVHhe7dgxioRAGITRvuxcYk61RzHYzFAQNDFbBwT/xblBd6XvwXeESqr9nZ+SNFZr79+SNFgBQ/Z9NyAYZUAQMCAIGBAEDAgCBgQBA4KAAUHAgCBgQBAwIAgYEAQMCAIGBAEDgoABQcCAIGBAEDAgCBgQBAwIAgYEAQOCgAFB4Dug+75LUn/btlW7rqsk9beua7XzPEtSf8uyVDuOoyT1N89ztWdFkvqbpqlae/2UpMGeK07SSHv9AzDeVBHxVo6TAAAAAElFTkSuQmCC" InformativeScreenshot="dfd2f3c9976d73f5621b840a2064f1b8.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive" />
+                                </uix:NTypeInto.Target>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NTypeInto>
+                              <uix:NKeyboardShortcuts DelayBetweenShortcuts="{x:Null}" ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="334,178" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Shortcuts="[d(hk)][k(enter)][u(hk)]" Version="V1">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NKeyboardShortcuts>
+                              <ui:WaitUiElementAppear DisplayName="Find Element - Remaining Amount" FoundElement="[UIE_RemainingAmount]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1" WaitActive="True" WaitVisible="True">
+                                <ui:WaitUiElementAppear.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c8f51168-6bc6-4f7d-9735-14843e6f8d3d" InformativeScreenshot="c58db8ecf6e7d9fda6aaa29d08faaac6" Selector="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;&lt;webctrl src='https://erp.tfpmy.com/TFP/*' tag='IFRAME' /&gt;&lt;webctrl tag='SPAN' aaname='Remaining Amount' innertext='Remaining Amount' /&gt;">
+                                    <ui:Target.TimeoutMS>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:Target.TimeoutMS>
+                                    <ui:Target.WaitForReady>
+                                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                                    </ui:Target.WaitForReady>
+                                  </ui:Target>
+                                </ui:WaitUiElementAppear.Target>
+                              </ui:WaitUiElementAppear>
+                              <ui:WaitAttribute TimeoutMS="{x:Null}" Attribute="aaname" AttributeValue="[&quot;Remaining Amount&quot;]" DisplayName="Wait Attribute" Element="[UIE_RemainingAmount]" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="WaitAttribute_2" />
+                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Remaining Amount'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="334,217" sap2010:WorkflowViewState.IdRef="NTypeInto_9" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Text="&lt;&gt;0" Version="V1">
+                                <uix:NTypeInto.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="245, 418, 250, 29" ElementType="InputBox" FriendlyName="'INPUT 53DEDBee'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='53DEDBee' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='53DEDBee' tag='INPUT' type='text' class='cursorinherit stringcontrol-edit thm-cont-u1-font-size thm-cont-u1-font-stack thm-cont-u1-color-2--medflat thm-cont-s1-bdrcolor--focus thm-cont-s1-outlinecolor--focus thm-cont-h1-bdrcolor--hover thm-cont-h1-bdrcolor--prev-sib-hover' aaname='' /&gt;" Guid="57c82ad5-14a7-46ee-85ba-35fc21b50c56" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAP4AAAAhCAYAAAD5/harAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEZSURBVHhe7d0xbsJAEIZRWk6XM+QyFEmRg1CkiZRL5B5JegRGBG/0F0ZCGHrvvJFeZbv8vN3Oan8YGlDLJfzheGx/53MzxvQ3aTuN34S/P53a1/dPe9q+t/XLW1ttXoGFS8tpOm2n8Sn+S/h5IHjoU9pO4zn5r8LPXyEvPH98tt/dro3jCCxcWk7TaTuNZ67Cn0570UNf0vR06t+Enwcx9yGwbFPfwodChA8FCR8KEj4UJHwoSPhQkPChIOFDQcKHgoQPBQkfChI+FCR8KEj4UJDwoSDhQ0HCh4KEDwUJHwoSPhR0N3y37EKfHt6y61596E9afnivvk060K+0PbtJx+486E9aTtNpe3Z3nm25xvQ797flAkUM7R/gScwiXZXTlAAAAABJRU5ErkJggg==" InformativeScreenshot="093b716da98b032e1fb3a89bd3b1ac9b.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="261, 395, 102, 16" ElementType="Text" FriendlyName="'Remaining Amount'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='53DEDA' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='53DEDA' tag='SPAN' type='' class='thm-rela-c3-font-size-4--medflat thm-rela-c3-font-stack-4--medflat thm-rela-c3-color-4--medflat' aaname='Remaining Amount' check:innerText='Remaining Amount' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGoAAAAUCAYAAABlCagmAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJnSURBVGhD7ZexS1xBEMb9A/MPCPaxsdIijVhYiIWFAauDVIeV10Ur7QQbQQTBYCGCYKIJGCyS6578Dr7H59y+y15QuX284uPt7Mx8M7OzO6dzf/4Oqw6zj65RhaBrVCHoGlUIukYVgq5RhaBu1MnpefVhYanG6uZO9fj7aczhNfH9/me1vLZVXV5dJ/UCeuywT+n/F/B9XFkf1Z7SzxJeNGq7t1srWA++HtZyG0HNG5+/jPDWlzIXXMpUPo2NinIb0esPqrOLb6OD+derfi9M3SjW7LHGiVGosah9Xlx/b7/WIaOLdtFfcRg97PPV+uDoeMzfk9eauNjML36qD9njsI9N02UjHjp8yNunR25dwPc9l3jgOTUA1qk4jb9RMoIYUkiQ/XApQEGQmfc6GPyxU6KC8znXJH9svUhi6mD5yoev1tjiLzkCP3E4v3Q5dbFGh4149FsaOV1m3VRD9BOSL8odlag3UUVgp2AQE4B95BgQfudAhtsbpbXiSnauyCv5x8OvF/EVM9WomGuUc+vChhjsC8Rjz+2i3zQ6IdkojDDGKR6gI7cguHUL0akY545xXJ5UiOSb27uxPL0mBz5cNr84QLXk1oUNMcQL3rVRkimcm8pXiTumKUjcHCQvFH5vhq9lJ3lSIS4Tw/PBP9Uoz1uAR2PL9fA01UUNTaMP+L8e8JEPfs4ROaNOaGwUhhATgKA+/hQwtyD354v/WzQKW8XhxaT+mIh5+r7yyq0LGTudi34SxOk6fOQXOVwG5IEPuYirblQb4QdeOlrbKF6Xj57S0apG+aiJo6N0tHr0tQldo4rAsHoG2l+lhCJ5KHIAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NTypeInto.Target>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NTypeInto>
+                              <uix:NKeyboardShortcuts DelayBetweenShortcuts="{x:Null}" ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="334,178" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_3" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Shortcuts="[d(hk)][k(enter)][u(hk)]" Version="V1">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NKeyboardShortcuts>
+                            </Sequence>
+                          </uix:NCheckState.IfExists>
+                          <uix:NCheckState.IfNotExists>
+                            <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="250,84" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </uix:NCheckState.IfNotExists>
+                          <uix:NCheckState.Target>
+                            <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="934, 291, 16, 14" ElementType="Icon" FriendlyName="'IMG'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' innertext='Vendor Ledger Entries*' /&gt;&lt;webctrl aaname='Filtered' tableCol='12' tableRow='1' tag='IMG' colName='Vendor No.' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' innertext='Vendor Ledger Entries*' /&gt;&lt;webctrl aaname='Filtered' type='' class='' tag='IMG' colName='Vendor No.' /&gt;" Guid="c0e4c930-1e6b-4f29-b551-b49295cb85e2" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABZSURBVDhP7dExDoAwDEPRnjlnC1ej3YK8oeBEoLQSQ4e/xW9o29mHzWyD9R6giHzK79eDqgcdsnDr9/QN36AMQ+GnZGiEoRBEDM0wlILIg+zm3gbr/R0cdgGVPgiw281FEAAAAABJRU5ErkJggg==" InformativeScreenshot="31b1fb026d2aaee4ee38ac24f9e29c47.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector" Visibility="Interactive" />
+                          </uix:NCheckState.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NCheckState>
+                        <uix:NCheckState Exists="{x:Null}" DelayBefore="3" DisplayName="Check App State 'IMG'" sap:VirtualizedContainerService.HintSize="806,1734" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Timeout="600" Version="V1">
+                          <uix:NCheckState.IfExists>
+                            <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="376,1518" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="ui:UiElement" Name="UIE_PostingDate" />
+                              </Sequence.Variables>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <uix:NClick ClickType="Single" DisplayName="Click to Add filter" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_11" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Version="V1">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="278, 532, 40, 14" ElementType="Text" FriendlyName="'Filter...'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='id__511' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='id__511' tag='DIV' type='' class='ms-Button-label label-39' aaname='Filter...' check:innerText='Filter...' /&gt;" Guid="df6eeae3-e1f1-4c52-b783-a14aedfaef11" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACwAAAASCAYAAAAg9DzcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADrSURBVEhLY/j2/cf/oYRHHUxrPHQdfPLhk//CnZP+MzR0wrH74pX/X3/6/D9l4zYwBql78Obdf4vZi8DqYXrpiVEcDHIIyEHICtAxuoN7jpyAe4YeeHg6GNlRyA4GiSEnoU3XbsLVqE+eBRcH6Uc2K2zVBnByAyVBmMeJxRQ5GF0OJg9yLLLj0dWT41AYxpvpYCFDioNBDoVlVpgYSA02s8jBVA9hEB/Z0zAMUzPoHAwKYXwOGnQOBskjp2F0jK4eZI7apFlgGhcbWT/FDoY5EBTtMEeC5JDzA3Imo5qDhwoedTCt8RBz8I//AGKMaUN+VAhQAAAAAElFTkSuQmCC" InformativeScreenshot="527f8fea7ca944ac125e43beb0a36d7e.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive" />
+                                </uix:NClick.Target>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NClick>
+                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Add Posting Date to filer " EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="334,217" sap2010:WorkflowViewState.IdRef="NTypeInto_12" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Text="Posting Date" Version="V1">
+                                <uix:NTypeInto.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="258, 560, 204, 30" ElementType="InputBox" FriendlyName="'INPUT ComboBox1304-input'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aria-role='combobox' id='ComboBox1304-input' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aria-role='combobox' id='ComboBox1304-input' tag='INPUT' type='text' class='ms-ComboBox-Input css-69' aaname='Add a new filter on a field' /&gt;" Guid="3d9d5255-8c34-4c2d-97d4-d8a2fb0eced8" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAANAAAAAiCAYAAAAu/ldmAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADGSURBVHhe7dixacRQEEXRX5xacROuyqUocKZQIJASZdaCQGN22dAY9F96DlyYBl4y7ed4lKS+Wvv8LkmdFdBl2zYDgl4GBAEDgoABQcCAIPDvgIZheF/AXwwIAgYEAQOCgAFBwIAgYEAQMCAIGBAEDAgCBgQBA4KAAUHAgCBgQBAwIAgYEAQMCAIGBIHXgK7rKkn3W9e12nmeJel+y7JUO46jJN1vnudq+76XpPtN01TtuSJJ9xvHsVr7+CpJnT1fcZJ62uoXsxUqbuA7Im4AAAAASUVORK5CYII=" InformativeScreenshot="d2713386f8835c53d743d95099ad19c3.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive" />
+                                </uix:NTypeInto.Target>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NTypeInto>
+                              <uix:NKeyboardShortcuts DelayBetweenShortcuts="{x:Null}" ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="334,178" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_6" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Shortcuts="[d(hk)][k(enter)][u(hk)]" Version="V1">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NKeyboardShortcuts>
+                              <ui:WaitUiElementAppear DisplayName="Find Element - Posting Date" FoundElement="[UIE_PostingDate]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_2" WaitActive="True" WaitVisible="True">
+                                <ui:WaitUiElementAppear.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c8f51168-6bc6-4f7d-9735-14843e6f8d3d" InformativeScreenshot="4f19781d70794c5f7b35d957d8ca8b5a" Selector="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;&lt;webctrl src='https://erp.tfpmy.com/TFP*' tag='IFRAME' /&gt;&lt;webctrl tag='SPAN' aaname='Posting Date' innertext='Posting Date' /&gt;" TimeoutMS="50000">
+                                    <ui:Target.WaitForReady>
+                                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                                    </ui:Target.WaitForReady>
+                                  </ui:Target>
+                                </ui:WaitUiElementAppear.Target>
+                              </ui:WaitUiElementAppear>
+                              <ui:WaitAttribute TimeoutMS="{x:Null}" Attribute="aaname" AttributeValue="[&quot;Posting Date&quot;]" DisplayName="Wait Attribute" Element="[UIE_PostingDate]" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="WaitAttribute_3" />
+                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Posting Date'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="334,217" sap2010:WorkflowViewState.IdRef="NTypeInto_13" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Text="01/01/2024..03/01/2024" Version="V1">
+                                <uix:NTypeInto.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="245, 542, 250, 29" ElementType="InputBox" FriendlyName="'INPUT 543ABBee'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='543ABBee' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='543ABBee' tag='INPUT' type='text' class='cursorinherit stringcontrol-edit thm-cont-u1-font-size thm-cont-u1-font-stack thm-cont-u1-color-2--medflat thm-cont-s1-bdrcolor--focus thm-cont-s1-outlinecolor--focus thm-cont-h1-bdrcolor--hover thm-cont-h1-bdrcolor--prev-sib-hover' aaname='' /&gt;" Guid="fb20b3b8-2c28-4ba0-bfa1-5b564ebb5296" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAP4AAAAhCAYAAAD5/harAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAElSURBVHhe7d0xTsNAEIbRtBwjJ+IMXIYCCg5CQYPEJbgH0EfBUUgW/YUjWXEiKL3zRnqF5bj8st3Oavs9NKCWU/jDbtd+DodmjOlv0nYaPwt/u9+394/Pdvv80m4entrq/hFYuLScptN2Gh/jP4WfF4KHPqXtNJ6TfxJ+/hXyg7vXt/a12bTj8QgsXFpO02k7jWcm4Y+nveihL2l6PPXPws+LmPsQWLax7z+Fv16vJ8/AMgkfChI+FCR8KEj4UJDwoSDhQ0HCh4KEDwUJHwoSPhQkfChI+FCQ8KEg4UNBwoeChA8FCR8KEj4U9K/wgT5cDN8tu9Cnq7fsulcf+pOWr96rb5MO9Cttz27SsTsP+pOW03Tant2dZ1uuMf3O5W25QBFD+wWtuJrtYb8ncQAAAABJRU5ErkJggg==" InformativeScreenshot="d348e4a137111f379bf48b45c2e916d3.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="261, 519, 67, 16" ElementType="Text" FriendlyName="'Posting Date'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='543ABA' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl id='543ABA' tag='SPAN' type='' class='thm-rela-c3-font-size-4--medflat thm-rela-c3-font-stack-4--medflat thm-rela-c3-color-4--medflat' aaname='Posting Date' check:innerText='Posting Date' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEcAAAAUCAYAAADfqiBGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHbSURBVFhH7ZYvS0RBFMX9gH4Bwa7FpMEiBoMYDAqmBdNicps2u8ViWjCIIChiUAy67clv4TzOm52Z3beL6wsTDm/m/r9n7gxv5ftnVBXEUcjJoJCTQSEng0JOBoWcDGpybu/uq9X1rRonvYsJ43nw+vZebe8fV8OHx6i+LT4+v6q9o7NGreyRx+wXQYMcJ4T14Oqm3rcBvsSL6RYFJByenjfIps6NnYPxQbhtCHzwnZXIJDnhvg2WTQ6AoGmH+SfksNYIr23u1oVxUpyYy/HxcX96fhl/sVVx/cvriViA5uTb6w9qP+lBihzFRh+rF7CWXIfn9YbkRskhAYUhAz6yJOENYZ86LeIoOXZODgXKh68fgOdBF7sqs5Djcu8rtPE6Y3GTD7I3oACCgsonpWcdkuPF+Z48yhn6SQZiTQD2TJts8FUvrJF5vtBG8F6S10rIkeN7vyLzkBPGbEsO/tSqphXLc/g6FccxlRzkqWvldn7y85CDPXbSEWvWa0U++WLvvw7EkS7Mj1+sZ2EqOYAEGjufEJd7Y8SSLPYgyy5WrOLlHmTksgNh3V4X8ZXDfakxjBUeRk1O1xAS9x/oLDlMAxMQ0y0LnSGHSfH/kNxbsCx0dnK6gEJOEqPqF++3dXY4h/H1AAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NTypeInto.Target>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NTypeInto>
+                              <uix:NKeyboardShortcuts DelayBetweenShortcuts="{x:Null}" ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="334,178" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_7" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Shortcuts="[d(hk)][k(enter)][u(hk)]" Version="V1">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NKeyboardShortcuts>
+                            </Sequence>
+                          </uix:NCheckState.IfExists>
+                          <uix:NCheckState.IfNotExists>
+                            <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="250,84" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </uix:NCheckState.IfNotExists>
+                          <uix:NCheckState.Target>
+                            <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="983, 290, 16, 14" ElementType="Icon" FriendlyName="'IMG'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?company=TFP%20Retail%20Sdn%20B*' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table' innertext='Vendor Ledger Entries.*' /&gt;&lt;webctrl aaname='Filtered' tableRow='1' tag='IMG' alt='Filtered' colName='Remaining Amount' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?company=TFP%20Retail%20Sdn%20B*' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' innertext='Vendor Ledger Entries.*' /&gt;&lt;webctrl aaname='Filtered' type='' tag='IMG' alt='Filtered' colName='Remaining Amount' class='' /&gt;" Guid="50632cd3-1fcb-4198-9739-9f49ed33c29b" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABrSURBVDhPY/j2/cd/auJRAynHDNdv3UMRKCoqIgkj6wVhhtdv36MIYNOEDyPrBWEML2/ZshWrRmwYpBZdP9YwJMZQbIaBMM5IwWcoLsNAGG8sYzMUn2EgTDDZoBuITQ0yHjWQcjzYDfzxHwDCWwg8l6zowAAAAABJRU5ErkJggg==" InformativeScreenshot="318eb5f97783e082d6ecd1605c359008.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector" Visibility="Interactive" />
+                          </uix:NCheckState.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NCheckState>
+                        <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="806,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                        <uix:NCheckState Exists="{x:Null}" DelayBefore="3" DisplayName="Check App State 'IMG'" sap:VirtualizedContainerService.HintSize="806,51" sap2010:WorkflowViewState.IdRef="NCheckState_9" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Timeout="300" Version="V1">
+                          <uix:NCheckState.IfExists>
+                            <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="476,727" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:GetLastDownloadedFile Timeout="{x:Null}" DisplayName="Wait for Download" DownloadFolder="D:\Shohan\Food_Panda_Documents" File="[VLE_File_Info]" sap:VirtualizedContainerService.HintSize="434,634" sap2010:WorkflowViewState.IdRef="GetLastDownloadedFile_1" IgnoreFiles="tmp,dwn">
+                                <ui:GetLastDownloadedFile.Body>
+                                  <ActivityAction>
+                                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,379" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Clicking Open in Excel for Vendor Leadger Entries&quot;]" />
+                                      <uix:NClick ClickType="Single" DelayAfter="0.8" DisplayName="Click 'Open in Excel'" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_14" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Version="V1">
+                                        <uix:NClick.Target>
+                                          <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?bookmark=12%3bGQAAAACHYRp1FQ%3d%3d&amp;page=29&amp;company=TFP%20Retail%20Sdn%20Bhd&amp;dc=0&amp;signInRedirected=1&amp;runinframe=1" DesignTimeRectangle="758, 202, 84, 19" ElementType="Text" FriendlyName="'Open in Excel'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?bookmark=12%3bGQAAAACHYRp1FQ%3*' tag='IFRAME' /&gt;&lt;webctrl aaname='Open in Excel' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?bookmark=12%3bGQAAAACHYRp1FQ%3*' tag='IFRAME' /&gt;&lt;webctrl aaname='Open in Excel' tag='SPAN' type='' class='' check:innerText='Open in Excel' /&gt;" Guid="b81541e4-9f6e-4a50-94f2-48ed461a9aab" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFgAAAAXCAYAAACPm4iNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAH+SURBVGhD7ZU9UgJBEEa9CufgDuwRuIAcAGPJ5Q4SS6hm6hXkCGqmRkq21tuqb6u36VkocQCrJvhq2en/N7PD2df3ui7KpwI4swrgzCqAM6sAzqwCOLMK4MzaAPzy+lZXVVUPBoNW14tFx+eQel6t6tGoap6RfZsuZ7POLOjh8Sn03Vdwop5d6wBmiOFw2AH6/vFZn08mjfht/f+DGPhQB6QXsEBGzciWa+dz6mQAc3rH43FzRVgHyQYDGuC3d/ftZ+dPuL9qNKQ262a5bO18NakrgDz0Jbv6QD53pBRg1mzPzGT70Nec6l/rFqh60ztqAQuahWRl7fz2yfmtd8HFT++CpAaxazOJS9WOAFNbuXn2bRC5BQP5uuRTT8pJLnvv489hkp+Hrbg/Bex9aUZfQGSneDSMj9WaFAG2Q0T5rAQxsqnu1XzeyZmKifqkrmJ9b2ivK8ICJI41nvjaUyMRf0qAETZ7qvvysRbNJRa+N7TxJxcl9jaeSiofCwm7LyRFdY4FmNzEIuuTiqGH6fSiM7dVL2BEAu4z26wGsIHY2Tn5yUdN0bi9g61OBbCN8zVYs/c69ugO9toKGAmO/QR8QhqgELspH59YmyW7Gj4GYPUgKQdxxOPnofJuY5Q/4iPbToB3EQltc0VpFcCZVQBn1q8AF+2uAjizCuCsWtc/RiQAO4GN988AAAAASUVORK5CYII=" InformativeScreenshot="b1e83b98432a30dbb0a597fcc658d580.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive" />
+                                        </uix:NClick.Target>
+                                      </uix:NClick>
+                                    </Sequence>
+                                  </ActivityAction>
+                                </ui:GetLastDownloadedFile.Body>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:GetLastDownloadedFile>
+                            </Sequence>
+                          </uix:NCheckState.IfExists>
+                          <uix:NCheckState.IfNotExists>
+                            <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="250,84" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </uix:NCheckState.IfNotExists>
+                          <uix:NCheckState.Target>
+                            <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?bookmark=12%3bGQAAAACHcwsiGw%3d%3d&amp;page=29&amp;company=TFP%20Retail%20Sdn%20Bhd&amp;dc=0&amp;signInRedirected=1&amp;runinframe=1" DesignTimeRectangle="607, 290, 16, 14" ElementType="Icon" FriendlyName="'IMG'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/*' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table' innertext='Vendor Ledger Entries*Buy-from Vendor No*' /&gt;&lt;webctrl aaname='Filtered' tableRow='1' tag='IMG' alt='Filtered' colName='Posting Date' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/*' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' innertext='Vendor Ledger Entries*Buy-from Vendor No*' /&gt;&lt;webctrl aaname='Filtered' type='' tag='IMG' alt='Filtered' colName='Posting Date' class='' /&gt;" Guid="9de27894-5584-4b48-8b3d-63d65f99bd43" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABZSURBVDhP7dExDoAwDEPRnjlnC1ej3YK8oeBEoLQSQ4e/xW9o29mHzWyD9R6giHzK79eDqgcdsnDr9/QN36AMQ+GnZGiEoRBEDM0wlILIg+zm3gbr/R0cdgGVPgiw281FEAAAAABJRU5ErkJggg==" InformativeScreenshot="a1fdaf2a532e1dd58027dbf8236b17af.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector" Visibility="Interactive" />
+                          </uix:NCheckState.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NCheckState>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="376,178" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,84" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;Bot can not find the Vendor Ledger entries Window &quot;]" />
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1347,51" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,248" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ClickType="Single" DisplayName="Click 'Vendor Ledger Entries'" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_15" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01365049-5605-4994-bc1d-5a4d1410d576" Version="V1">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="https://erp.tfpmy.com/TFP/Default?runinframe=1" DesignTimeRectangle="194, 143, 34, 34" FriendlyName="''" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='' aria-role='presentation' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='' aria-role='presentation' tag='I' type='' class='css-46 root-43 ms-Button-icon back-icon--2G_ZejjTouY8kvq8tZxcVU thm-head-c0-icon-font-size-2 thm-head-g1-bgcolor-3 thm-head-c0-icon-color-2 thm-head-s2-bgcolor-1--active thm-head-c0-icon-color-2--maxflat--active thm-head-h1-bgcolor-1--hover thm-head-c0-icon-color-2--medtint--hover icon-38' check:innerText='' /&gt;" Guid="c5338d26-5d0c-44c1-bacf-d0b6163ecfeb" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAYAAACoPemuAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHlSURBVFhH3ZfLSgMxFIZ9OnfdiKuKrvQd+gbWpav6ACIuqo8gXnaCiwouVLzhpigFHVt70fGUX0hIMyeZJDOpgz/8UCbJmY85yTnpAlVU/wtskv5Qbzyh588h3fQHdJX06fL949f4jWcYwxzMDZEXWPL1TY+DoYRwNdZgrY+cwEZpGgSkGzEQy0W5YEgH95IiRsw8WcG6ozEbuAwjtk1GsJhQwjY4FixG+kw2pTUDhs3JBYhp7kBkwMo4fb7GO3XNgKHWcAvzfN59oYvXHjvmar3OzYCFfK2Tu3taXl2jVvuAHXe1/tUkGFoHt8BmAbW9u0edt4Sd42O1fUkw35NYNhSsnlAJhqbLTeYcAwoGg5AEw42Am6w7FhQMBiEJpl5dTI4JBYNBSIJxE1UDaqm+Qou1GjU2m9Robnl5//iUjatbyBns6Pr2b8BcUnn28ET19Y35ptJ188eEYze/T7mIBceWC98CGwOOLbAhLalsOLYlQSFNXMDttA/ZcVcbmzhU2WsPFPLVilr/WlAGrLJXa8j3hBaxehJVsWBQJf++CcWEs0FBVjAoRlpN6VOVCwZhc5ZxWhGD2+icnMCEUGtCALFGr1N58gITQutAOtB0cSNQr0z4jWcYwxy1zfgoCGweqigY0RRX/Tbgjl+TDwAAAABJRU5ErkJggg==" InformativeScreenshot="76ede0b18d2e639cc3f2758232ada181.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='View - Vendor Ledger Entries - Dynamics 365 Business Central' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="245, 154, 167, 14" ElementType="Text" FriendlyName="'Vendor Ledger Entries'" FullSelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='Vendor Ledger Entries' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='https://erp.tfpmy.com/TFP/Default?runinframe=1' tag='IFRAME' /&gt;&lt;webctrl aaname='Vendor Ledger Entries' tag='SPAN' type='' class='content--11EpEhMg6WiqoEO8wTAXfn' check:innerText='VENDOR LEDGER ENTRIES' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAKsAAAASCAYAAAAkLS6kAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAYpSURBVGhD7ZmLU1VVFMb7A5vGqWmaGvOVlg5DGDrGgKWpGZhphmig4Yt8kYaSLyQf+MRXovlIHEzDNyLgAxFidX871nHdzTneAzJTd+Z8M2fk7L322t9e67t7r7N9TRIkyBIkYk2QNUjEmiBrEIh1XN7ncvRk08Dbv2i53iqjcwpd+8OOLpk8Y568Pjp30LN9zwHpftYjs79eLnMXV7i/FdqOjX2348fkzpTauoPS8/y5swH9/f1y5ORZmTRtjrOZMHWW7Dt8wrWDMD+jxk6VxeVV0tHZ5Wx8nD53Ud6bUuDWFQb6rT99dExc7qD19l2ZtWCZ4/TOhzNk7eZaedbzIi7Ew/rRhxgT6zAuxOD4qXNBDCzCuOlTVrnJ2eDzrQnT5FTTRfeuoJ1579xri/RBDC43X8sYc+Whc8bhxXpOnDkvHxeVyBtj8pzPoq9K5VJzS9paA7HO/3alLFu9Oa2zvqFRPpo+V+61tQdiLf1hgzSmHNvn5u17ASkmq284PuDhBVlfrCSSscdONUn52p9cENds2h7Mj49R46bKkhXr5XDjb7K0cqO8OT4/8O374dlRf0jezylyY/r6/nZ2FnHE+vbE6Y6r+uQhuY+fPI3N/e79BzIp/wvJn7VQ9h85KRtrdjvBrvxxa8CLORA6P0A719nf/3DC97kw14Klq+TdyQXS3HLd+bAIi4c+V6/dcDb4RCTw6ux67NqAirWtvUMuXmlxY+AFv/Vbd7p3YvAg1Z8p5srDF+vLeJ2/1OzWykZHronZ3EUVsq76l3CxEpQpn34p7R2d7v15b68Uf1cZkFCxYhcGJYXAEDgJs+06zl+Mgn7GPXjYGdjwi+3t63P9kK7cUCMF85akCcf3U7NrX7A7+Ygj1pf1x+EOSCBi1RiAg8dOu+T/dfOOe2dMFE8QxgX/zBOWgyhuFvh0O1cqR5u27QmEoGK1XDTf9CnixNy3icOL9XxWUibd3c8GWsIRiJWgjE0FE5UD3R20NFDyYYECSqq4tFLmfFPudmmEpu06Loq8TU7UXLxHBUXxX4jVH0c/dthHwa4lDGFcRkKs+KzaskPGp8o+u+P6XDQH9CnixNy3icOL9eQUzHdlyMsQiFWdrt64zb0jUrs7KHm/DNAFW1K0EQyODm3XAEeRt8nRufyk2ASrn7QjaW+D8zHSZYCeNnG4A/qxw55TgDj4vpjDLwO03AA+F8oATjrKiaGUARzrGgvlyXg2E/2+oF3jqtAc0KeIE3M/RnF4XW+95fRCrUqJsra61mnIlgAgECsgMByzjx4/cYtZ9P26wKGSjyqSLUkm4ZhhYsROO759Owub8KGI1XLhiFu4bM2If2BpwuJwB/Rjhz1t9Pm+WIudg8f6CONCbTjUDyzlASxP8sIuzTcA7UMRq/Xvx9yPURxeAM0dajzjNsMPPpntbCrWbQnKQJAmVhbBbnr89DlXv1LsKqIEpPBJUsAj1uUp0fOr0nG+ncIGcihiVT98HOQWFqfVYj7sHGHI1B+HO6DfTwbimJg/O0i+XUsYfJ/Y+3WwRRQ3C98nQkUYP+8cXDppDpQviBNz3yYOLx/40hqfXVeRJtYnT7ulcH6pzCwuc0RtYKIEpAgjxbHGUUZBr+OiyNP/qh9Y+OA4ab11d6AlHX6yfGTqj8Nd30kiyVQ0XbjifF+++qd7x2YoYlVh2FsHiyhuFr5PxlAKcMsyHLECP+a+TRxeYSBO/JBsLtLECqpr97otmPqIGwGFks90dWVJUUJwXYM/FgXUTmuYV726svN1dD2SvJkLUv6qg/LFgsCH1aRaK2bqj8udxJFAvbrauuNXd4SXLF0V3McyR6arK/+HU3fgaOSPyedmH/sh5Y+/duOm4zFcsfox920y8WIzQiPY1B045tprdu13pxAbJxuoYpBYKb4p4rljtVDyWnPYh8CHLQTcb2t3X3q+WO14gjXc/xTw50PM3EVyge2DwNt59dEEZuqPyx0gAi62+WhAzCuqtgQfT4B4WD/6qGjChKWllT1xFGHc9NEYhfkkntt27x+2WIGNuW+TiRfzI1pukdAd7fzLJsW9rsUgsSZI8H9FItYEWYNErAmyBolYE2QNErEmyBKI/AO9bJqGrl6uhwAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-8, -8, 1376, 744" BrowserType="Edge" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACSSURBVDhPY8AJFALOA/F9ME0yUAhQAGuGsEGGKIDZJAGKXAACCgECQPwfTJMMFAIagPg91ACQKwqgMjgAsh8Rmh3A4hC6HyoLAShhgu5XhGbsYYAhDuLAaIiTQRg9FmDiEC/BxKEMCl0AAgoBBlAWiI0cBgZQGk8YYAMkxwI2QFE6AAFcYUAUwIyFgcgLRAEGBgAsMF7GllfZPQAAAABJRU5ErkJggg==" InformativeScreenshot="312ebf8fe0e2b349e3d2c8f44c610e90.png" Selector="&lt;html app='msedge.exe' title='Accounts Payable Coordinator - Dynamics 365 Business Central' /&gt;" Url="https://erp.tfpmy.com/TFP/Default" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
